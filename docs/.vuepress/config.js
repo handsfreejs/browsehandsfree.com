@@ -5,23 +5,19 @@ module.exports = {
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.png' }],
-    [
-      'script',
-      { src: 'https://www.googletagmanager.com/gtag/js?id=UA-155013240-1' }
-    ],
+    ['script', { src: 'https://www.googletagmanager.com/gtag/js?id=UA-160252285-1' }],
     [
       'script',
       {
-        src:
-          'https://cdn.jsdelivr.net/npm/canvas-confetti@0.5.0/dist/confetti.browser.min.js'
+        src: 'https://cdn.jsdelivr.net/npm/canvas-confetti@0.5.0/dist/confetti.browser.min.js'
       }
     ],
-    ['script', { src: 'https://unpkg.com/handsfree@6.1.7/dist/handsfree.js' }],
+    ['script', { src: 'https://unpkg.com/handsfree@7.0.3/dist/handsfree.js' }],
     [
       'link',
       {
         rel: 'stylesheet',
-        href: 'https://unpkg.com/handsfree@6.1.7/dist/handsfree.css'
+        href: 'https://unpkg.com/handsfree@7.0.3/dist/handsfree.css'
       }
     ]
   ],
@@ -33,52 +29,33 @@ module.exports = {
     logo: '/favicon.png',
     lastUpdated: 'Last Updated',
 
-    author: { name: 'Oz Ramos', twitter: '@HeyOzRamos' },
+    author: { name: 'Oz Ramos', twitter: '@checkboxoz' },
     domain: 'https://browsehandsfree.com',
 
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Chrome Extension', link: '/browser/' },
-      { text: 'Handsfree.js', link: '/code/' },
-      { text: 'Demos', link: '/demos/' },
-      { text: 'Get Involved', link: '/get-involved/' },
-      { text: 'About', link: '/about/' }
+      { text: 'Reference', link: '/reference/' }
     ],
 
     sidebar: [
       '/',
-      '/getting-started/',
       {
-        title: 'Chrome Extension',
-        path: '/browser/',
-        children: ['/browser/calibrating/', '/browser/sites/'],
-        collapsable: false
-      },
-      {
-        title: 'Handsfree.js',
-        path: '/code/',
+        title: 'Reference',
+        path: '/reference/',
         collapsable: false,
         children: [
-          '/code/getting-started/',
-          '/code/config/',
-          '/code/head/',
-          '/code/body/',
-          '/code/plugins/',
-          '/code/methods/',
-          '/code/classes/',
-          '/code/properties/',
-          '/code/events/',
-          '/code/calibrating/',
-          '/code/client-mode/'
+          '/reference/',
+          '/reference/config/',
+          '/reference/head/',
+          '/reference/body/',
+          '/reference/plugins/',
+          '/reference/methods/',
+          '/reference/classes/',
+          '/reference/properties/',
+          '/reference/events/',
+          '/reference/calibrating/',
+          '/reference/client-mode/'
         ]
-      },
-      '/demos/',
-      '/get-involved/',
-      {
-        title: 'About',
-        path: '/about/',
-        collapsable: false,
-        children: ['/about/privacy-policy/', '/about/pitch-decks/']
       }
     ]
   }
