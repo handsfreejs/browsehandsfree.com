@@ -9,6 +9,8 @@ description: Check out the different classes that are for styling your handsfree
 
 Handsfree.js comes with a calibration method, `handsfree.startCalibration()`, that updates `Handsfree.plugins.head.pointer.config.offset.x` and `.y` until the pointer is calibrated to the users head pose. Currently this only works for the face pointer. Here's what the calibration looks like:
 
+After calibration, a `handsfreeCalibrationEnded` event is emitted which you can listen to from other parts of the app (either with `handsfree.on('handsfreeCalibrationEnded')` or `window.addEventListener('handsfreeCalibrationEnded')`)
+
 ## Configuration
 
 ```js

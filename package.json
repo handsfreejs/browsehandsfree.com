@@ -1,22 +1,25 @@
 {
-  "name": "browsehandsfree.com",
+  "name": "handsfree.js.org",
   "version": "0.0.1",
-  "description": "The landing page for our Chrome Extension",
-  "main": "index.js",
+  "description": "The documentation site for Handsfree.js 📚",
+  "deploy": {
+    "domain": "handsfree.js.org",
+    "repo": "https://github.com/handsfreejs/handsfree"
+  },
   "scripts": {
     "start": "vuepress dev docs",
     "build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/handsfreejs/browsehandsfree.git"
+    "url": "git+https://github.com/handsfreejs/handsfree.js.org.git"
   },
-  "author": "Oz Ramos <heyozramos@gmail.com>",
+  "author": "Oz Ramos <checkboxoz@gmail.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/handsfreejs/browsehandsfree/issues"
+    "url": "https://github.com/handsfreejs/handsfree.js.org/issues"
   },
-  "homepage": "https://github.com/handsfreejs/browsehandsfree#readme",
+  "homepage": "https://github.com/handsfreejs/handsfree.js.org#readme",
   "devDependencies": {
     "vuepress": "^1.2.0",
     "vuepress-plugin-seo": "^0.1.2"

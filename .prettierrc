@@ -2,5 +2,6 @@
   "semi": false,
   "arrowParens": "always",
   "singleQuote": true,
-  "disableLanguages": ["html"]
+  "disableLanguages": ["html"],
+  "printWidth": 120
 }

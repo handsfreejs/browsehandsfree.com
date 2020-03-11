@@ -24,15 +24,6 @@ export default {
 
   methods: {
     startWebcam(ev) {
-      window.confetti({
-        startVelocity: 50,
-        spread: 360,
-        particleCount: 1000,
-        origin: {
-          x: (ev.screenX - 0) / window.innerWidth,
-          y: (ev.screenY - 100) / window.innerHeight
-        }
-      })
       window.handsfree = new Handsfree({ autostart: true })
 
       if (this.gotoDemo) {
