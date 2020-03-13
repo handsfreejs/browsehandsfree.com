@@ -17,13 +17,10 @@ image: /handsfreejs-cover.jpg
 <!DOCTYPE html>
 <head>
   <!-- Import styles and Handsfree into global namespace -->
-  <script src="https://unpkg.com/handsfree@7.0.3/dist/handsfree.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/handsfree@7.0.3/dist/handsfree.css" />
+  <script src="https://unpkg.com/handsfree@7.0.3/dist/handsfree.js"></script>
 </head>
 <body>
-  <!-- Start tracking with enabled models -->
-  <button onclick="handsfree.start()">Start Webcam</button>
-
   <script>
     // Create a new instance of Handsfree (one instance per camera)
     const handsfree = new Handsfree({
@@ -39,6 +36,9 @@ image: /handsfreejs-cover.jpg
       }
     })
   </script>
+
+  <!-- Start tracking with enabled models -->
+  <button onclick="handsfree.start()">Start Webcam</button>
 </body>
 ```
 
@@ -59,7 +59,7 @@ image: /handsfreejs-cover.jpg
     <p><button>Get started</button></p>
   </div>
   <div class="feature">
-    <img src="https://media.giphy.com/media/ZZZ7DgmLszJG9UfLOe/source.gif">
+    <img src="https://media.giphy.com/media/giEKWdGQCwpTBDzTaX/source.gif">
     <h2>Hand Gestures</h2>
     <p><b>Coming soon!</b> Use hand gestures to control web components and AR experiences. <a href="https://blog.tensorflow.org/2020/03/face-and-hand-tracking-in-browser-with-mediapipe-and-tensorflowjs.html?linkId=83996111">Powered by Handpose</a></p>
     <p><button disabled>Coming soon!</button></p>

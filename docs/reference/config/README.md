@@ -16,13 +16,10 @@ let config = {
   // Whether Handsfree should automatically start after instantiation
   autostart: false,
 
-  // Whether to run this instance in "client mode": models aren't loaded and no inference
-  isClient: false,
-
   // Represents the video feed and it's debug canvases
-  debugger: {
-    // Where to inject the debugger into
-    target: document.body,
+  feedback: {
+    // The DOM element to inject the video/canvas feedback elements
+    $target: document.body,
     enabled: false
   },
 
@@ -37,38 +34,110 @@ let config = {
   },
 
   models: {
-    head: {
+    /**
+     * Head tracking model
+     */
+    weboji: {
       enabled: true,
-      throttle: 0
-    },
-    bodypix: {
-      enabled: false,
-      throttle: 0,
-      method: 'segmentPerson',
-      debugMethod: 'toMask',
-      modelConfig: {
-        architecture: 'MobileNetV1',
-        outputStride: 16,
-        multiplier: 0.75,
-        quantBytes: 2
-      }
-    }
-  },
 
-  head: {
-    morphs: {
-      threshold: {
-        smileRight: 0.7,
-        smileLeft: 0.7,
-        browLeftDown: 0.8,
-        browRightDown: 0.8,
-        browLeftUp: 0.8,
-        browRightUp: 0.8,
-        eyeLeftClosed: 0.4,
-        eyeRightClosed: 0.4,
-        mouthOpen: 0.3,
-        mouthRound: 0.8,
-        upperLip: 0.5
+      // Run inference every this many milliseconds (0 to run as fast as possible)
+      throttle: 0,
+
+      // Represents the calibrator settings
+      calibrator: {
+        // (optional) The target element to act as the calibrator wrapping div
+        target: null,
+        // The message to display over the marker, can be HTML
+        instructions: 'Point head towards center of circle below',
+        // (optional if .target === null, otherwise required)
+        // - The target element to act as the calibrator target (should be inside target)
+        marker: null
+      },
+
+      morphs: {
+        // The amount each gesture must be morphed before
+        // handsfree.weboji.state[stateName] === true
+        threshold: {
+          smileRight: 0.7,
+          smileLeft: 0.7,
+          browLeftDown: 0.8,
+          browRightDown: 0.8,
+          browLeftUp: 0.8,
+          browRightUp: 0.8,
+          eyeLeftClosed: 0.4,
+          eyeRightClosed: 0.4,
+          mouthOpen: 0.3,
+          mouthRound: 0.8,
+          upperLip: 0.5
+        }
+      }
+    },
+
+    /**
+     * Full body pose estimation model
+     */
+    posenet: {
+      enabled: false,
+
+      // Run inference every this many milliseconds (0 to run as fast as possible)
+      throttle: 0,
+
+      // The model architecture
+      // 'MobileNetV1' === Good for mobile devices or slow internet connections. Fast but less accurate
+      // 'ResNet50' === Good for native applications. Slower but more accurate
+      architecture: 'MobileNetV1',
+
+      // The image scale factor, between 0.2 and .5
+      // Determines how much to resize the image by before feeding into neural network
+      imageScaleFactor: 0.3,
+
+      // Specifies the output stride of the PoseNet model
+      // Smaller values are faster but less accurate
+      // 16 and 32 are supported for the ResNet
+      // 8, 16, 32 are supported for the MobileNetV1
+      outputStride: 16,
+
+      // Whether to flip the image before infering
+      flipHorizontal: false,
+
+      // The minimum confidence needed before a detection occurs
+      minConfidence: 0.5,
+
+      // Maximum number of poses to detects. Slower for 2, and slightly slower for every subsequent
+      maxPoseDetections: 1,
+
+      // Only return instance detections that have root part score greater or equal to this value
+      scoreThreshold: 0.5,
+
+      // Non-maximum suppression part distance
+      // Two parts suppress each other if they are less than nmsRadius pixels away
+      nmsRadius: 20,
+
+      // Whether to detect 1 or multiple poses. 'single' or 'multiple'
+      detectionType: 'single',
+
+      // Can be one of 161, 193, 257, 289, 321, 353, 385, 417, 449, 481, 513, and 801
+      // Specifies the size the image is resized to before it is fed into the PoseNet model
+      // Larger values are slower but more accurate
+      inputResolution: 513,
+
+      // Only used by MobileNetV1. Valid values are: 1.01, 1.0, 0.75, or 0.50
+      // The float multiplier for the depth (number of channels) for all convolution ops
+      // Larger values are slower but more accurate
+      multiplier: 0.75,
+
+      // This argument controls the bytes used for weight quantization
+      // A value of 4 leads to a 45MB model size reduction
+      // 1 byte per float. Leads to lower accuracy and 4x model size reduction (~22MB).
+      quantBytes: 2,
+    },
+
+    /**
+     * Plugin overrides
+     */
+    plugin: {
+      `${pluginName}`: {
+        key: value
       }
     }
   }
