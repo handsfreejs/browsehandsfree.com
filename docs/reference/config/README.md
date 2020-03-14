@@ -148,28 +148,54 @@ const handsfree = new Handsfree(config)
 
 ## Examples
 
+### Enable just the Weboji (head) model with defaults
+
 ```js
-// Shift the pointer up by 500 pixels and halve sensitivity
-const handsfree = new Handsfree({
-  plugin: {
-    head: {
-      pointer: {
-        offset: {
-          x: -500
-        },
-        speed: {
-          x: 0.5,
-          y: 0.5
-        }
-      }
-    }
+handsfree = new Handsfree({ weboji: true })
+```
+
+### Only run Weboji every 50ms
+
+```js
+handsfree = new Handsfree({
+  weboji: {
+    enabled: true,
+    throttle: 50
   }
 })
+```
 
-// Set the div that the video feed is embedded in
-const handsfree = new Handsfree({
-  debugger: {
-    target: document.querySelector('#my-debug-panel')
+### Run Weboji and PoseNet, but throttle PoseNet with ResNet50
+
+```js
+handsfree = new Handsfree({
+  weboji: true,
+  posenet: {
+    enabled: true,
+    throttle: 50,
+    architecture: 'ResNet50'
+  }
+})
+```
+
+### Run Weboji and configure the faceClick plugin to click with a wink
+
+```js
+handsfree = new Handsfree({
+  weboji: true,
+  plugin: {
+    faceClick: {
+      morphs: {
+        // Disable right smile
+        0: 0,
+        // Disable left smile
+        1: 0,
+        // Click with right blink
+        8: 0.35,
+        // Click with left blink
+        9: 0.35
+      }
+    }
   }
 })
 ```
